@@ -1,0 +1,29 @@
+.container-home {
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  overflow: hidden;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  /* background-color: red; */
+  margin-top: -80px;
+}
+
+.greeting {
+  font-size: 40px;
+  font-weight: 400;
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+.complementary-greeting {
+  margin-left: 15px;
+  font-size: 30px;
+  margin-top: 0px;
+}
