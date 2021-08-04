@@ -1,12 +1,29 @@
 import React, { useState } from 'react';
 import { TextField } from '@material-ui/core';
+import fetchZipCodeInformation from '../services/zipCode';
 
 const TextFieldCustom = props => {
   const [valueField, setValueField] = useState();
 
+  const getZipCode = async value => {
+    const validateZipCode = /^[0-9]{8}$/;
+    if (validateZipCode.test(value)) {
+      const result = await fetchZipCodeInformation(value);
+      props.form.setValues({
+        ...props.form.values,
+        estado: result.estado,
+        municipio: result.municipio,
+        rua: result.rua
+      });
+    }
+  };
+
   const handleChange = value => {
     setValueField(value.target.value);
     props.form.setFieldValue(props.field.name, value.target.value);
+    if (props.field.name === 'cep' && (value.target.value.length === 8 || value.target.value.length === 9)) {
+      getZipCode(value.target.value);
+    }
   };
 
   const errorMessage = () => {
